@@ -7,7 +7,8 @@
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "dependencies": {
-    "firebase-admin": "^8.10.0"
+    "@firebase/app": "^0.6.13",
+    "@firebase/database": "^0.8.1"
   },
   "author": "",
   "license": "ISC"

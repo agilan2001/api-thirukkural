@@ -1,14 +1,18 @@
+var {firebase} = require('@firebase/app');
+require('@firebase/database')
 
-var admin = require("firebase-admin");
+const firebaseConfig = {
+    apiKey: "AIzaSyC9CHQ3rwtv_hk5h7eQN0TT1FBzOR1Ufcc",
+    authDomain: "api-thirukkural.firebaseapp.com",
+    databaseURL: "https://api-thirukkural.firebaseio.com",
+    projectId: "api-thirukkural",
+    storageBucket: "api-thirukkural.appspot.com",
+    messagingSenderId: "517369172600",
+    appId: "1:517369172600:web:36fb0c5407f95b73aa938d"
+  };
+firebase.initializeApp(firebaseConfig)
 
-var serviceAccount = require("./api-thirukkural-firebase-adminsdk-burfm-b004df9242.json");
-
-admin.initializeApp({
-    credential: admin.credential.cert(serviceAccount),
-    databaseURL: "https://api-thirukkural.firebaseio.com"
-});
-
-var db = admin.database();
+var db = firebase.database();
 
 
 var sect_tam = ["அறத்துப்பால்", "பொருட்பால்", "காமத்துப்பால்"];
@@ -82,25 +86,10 @@ module.exports = async (req,res) => {
             "eng_exp": e.val()["eng_exp"]
         };
         res.status(200).send(JSON.stringify(kural_n));
-        // return ({
-        //     statusCode: 200,
-        //     headers: {
-        //         "Access-Control-Allow-Origin": "*",
-        //     },
-        //     body: JSON.stringify(kural_n),
-        // })
-
 
     } else {
 
         res.status(200).send("BAD REQUEST");
-        // return ({
-        //     statusCode: 400,
-        //     headers: {
-        //         "Access-Control-Allow-Origin": "*",
-        //     },
-        //     body: JSON.stringify("BAD REQUEST"),
-        // })
     }
 }
 
