@@ -227,7 +227,7 @@
               style="float:right;padding: 0 10px;">COPY</button></div>
           <div class="panel-body">
             <div class="url">
-              https://api-thirukkural.web.app/kural?num={kural_num}</div>
+              https://api-thirukkural.vercel.app/kural?num={kural_num}</div>
             <span class="ret_par">{kural_num}</span>The required kural poem number<br>
           </div>
         </div>
@@ -296,7 +296,7 @@
       <div class="container">
         <div id="foot">[Try changing the kural number in the URL...]</div>
         <span id="exmp">
-          <span>https://api-thirukkural.web.app/kural?num=</span><input id="kural_no_txt" onchange="go_clk()"
+          <span>https://api-thirukkural.vercel.app/kural?num=</span><input id="kural_no_txt" onchange="go_clk()"
             type="number" min="1" max="1330" value="1">
         </span>
         <button class="btn btn-success" id="get_btn" onclick="go_clk()">GET</button>
@@ -318,14 +318,15 @@
       </div>
     </div>
   </div>
+  
   <input style="position: absolute;top:-100px;" id="copy" type="text"
-    value="https://api-thirukkural.web.app/kural?num=1">
+    value="https://api-thirukkural.vercel.app/kural?num=1">
 </body>
 <script>
   function go_clk() {
     res_txt.innerHTML = `<div id="loader"></div>`;
 
-    fetch('https://api-thirukkural.web.app/kural?num=' + kural_no_txt.value)
+    fetch('https://api-thirukkural.vercel.app/api?num=' + kural_no_txt.value)
       .then(res => res.json())
       .then(data => {
         res_txt.innerHTML = JSON.stringify(data, null, 2).toString()
@@ -335,7 +336,7 @@
       });
       /*
     $.ajax({
-      url: 'https://api-thirukkural.web.app/kural?num=' + kural_no_txt.value,
+      url: 'https://api-thirukkural.vercel.app/kural?num=' + kural_no_txt.value,
       type: 'GET'
     }).fail(function (data) {
       res_txt.innerHTML = "ERROR " + data.status + ": " + data.responseText;
@@ -346,7 +347,7 @@
   }
   function copy_clk() {
     if (navigator.clipboard)
-      navigator.clipboard.writeText("https://api-thirukkural.web.app/kural?num=1").then(alert("URL Copied to Clipboard"));
+      navigator.clipboard.writeText("https://api-thirukkural.vercel.app/kural?num=1").then(alert("URL Copied to Clipboard"));
     else {
       var copyText = document.getElementById("copy");
       copyText.select();
