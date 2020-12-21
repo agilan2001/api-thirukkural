@@ -324,6 +324,16 @@
 <script>
   function go_clk() {
     res_txt.innerHTML = `<div id="loader"></div>`;
+
+    fetch('https://api-thirukkural.web.app/kural?num=' + kural_no_txt.value)
+      .then(res => res.json())
+      .then(data => {
+        res_txt.innerHTML = JSON.stringify(data, null, 2).toString()
+      })
+      .catch(e=>{
+        res_txt.innerHTML = "ERROR " + e;  
+      });
+      /*
     $.ajax({
       url: 'https://api-thirukkural.web.app/kural?num=' + kural_no_txt.value,
       type: 'GET'
@@ -332,7 +342,7 @@
     })
       .done(function (data) {
         res_txt.innerHTML = JSON.stringify(data, null, 2).toString();
-      })
+      })*/
   }
   function copy_clk() {
     if (navigator.clipboard)
