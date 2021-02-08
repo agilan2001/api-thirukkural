@@ -92,7 +92,7 @@
     white-space: nowrap;
     overflow: auto;
     border: 2px solid red;
-    padding: 4px;
+    padding: 3px;
     border-radius: 5px;
     max-width: 350px;
     margin: auto;
@@ -175,6 +175,13 @@
       transform: rotate(360deg);
     }
   }
+
+  .notice {
+    margin: 20px;
+    border: 5px solid red;
+    padding: 15px;
+    border-radius: 30px;
+  }
 </style>
 <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
@@ -192,11 +199,21 @@
       <div class="container">
         <div class="ttl2">[ -- MY FIRST API -- ]</div>
         <div style="text-align: center;font-size: 4.5vh;font-weight: bold;color: lawngreen;"> -- AGILAN -- </div>
-        <div style="text-align: center;"> -- <a
-            href="mailto:agilanvlr2001@gmail.com?subject=API - Thirukkkural : reg.">agilanvlr2001@gmail.com</a> --
+        <div style="text-align: center;"> -- <a href="https://agilan-pro.web.app/">agilan-pro.web.app</a> --
         </div>
-        <div style="text-align: center;font-size: small;font-style: oblique;">( Click to mail )</div>
         <hr>
+        <div class="notice">
+          <div style="text-align: center; color: blue; font-weight: bold;">NOTE</div>
+          Due to <a href="https://firebase.google.com/support/faq?authuser=0#expandable-12">changes</a> in the Firebase
+          Policies,
+          the api URL<br>
+          <div style="color:red; word-break: break-all;">https://api-thirukkural.web.app/api?num=x</div>is to be
+          retired from 15 March, 2021.
+          Developers using the deprecated URL are therefore requested to migrate and update to the new URL from Vercel
+          Functions:
+          <div style=" word-break: break-all;"><a
+              href="https://api-thirukkural.vercel.app/api?num=1">https://api-thirukkural.vercel.app/api?num=x</a></div>
+        </div>
         &nbsp;&nbsp;&nbsp;<span class="yellow">Thirukkural</span> is considered to be the world's greatest work on
         ethics
         and morality gifted by the Tamilians.
@@ -227,7 +244,7 @@
               style="float:right;padding: 0 10px;">COPY</button></div>
           <div class="panel-body">
             <div class="url">
-              https://api-thirukkural.vercel.app/kural?num={kural_num}</div>
+              https://api-thirukkural.vercel.app/api?num={kural_num}</div>
             <span class="ret_par">{kural_num}</span>The required kural poem number<br>
           </div>
         </div>
@@ -296,7 +313,7 @@
       <div class="container">
         <div id="foot">[Try changing the kural number in the URL...]</div>
         <span id="exmp">
-          <span>https://api-thirukkural.vercel.app/kural?num=</span><input id="kural_no_txt" onchange="go_clk()"
+          <span>https://api-thirukkural.vercel.app/api?num=</span><input id="kural_no_txt" onchange="go_clk()"
             type="number" min="1" max="1330" value="1">
         </span>
         <button class="btn btn-success" id="get_btn" onclick="go_clk()">GET</button>
@@ -318,9 +335,9 @@
       </div>
     </div>
   </div>
-  
+
   <input style="position: absolute;top:-100px;" id="copy" type="text"
-    value="https://api-thirukkural.vercel.app/kural?num=1">
+    value="https://api-thirukkural.vercel.app/api?num=1">
 </body>
 <script>
   function go_clk() {
@@ -331,23 +348,23 @@
       .then(data => {
         res_txt.innerHTML = JSON.stringify(data, null, 2).toString()
       })
-      .catch(e=>{
-        res_txt.innerHTML = "ERROR " + e;  
+      .catch(e => {
+        res_txt.innerHTML = "ERROR " + e;
       });
-      /*
-    $.ajax({
-      url: 'https://api-thirukkural.vercel.app/kural?num=' + kural_no_txt.value,
-      type: 'GET'
-    }).fail(function (data) {
-      res_txt.innerHTML = "ERROR " + data.status + ": " + data.responseText;
-    })
-      .done(function (data) {
-        res_txt.innerHTML = JSON.stringify(data, null, 2).toString();
-      })*/
+    /*
+  $.ajax({
+    url: 'https://api-thirukkural.vercel.app/api?num=' + kural_no_txt.value,
+    type: 'GET'
+  }).fail(function (data) {
+    res_txt.innerHTML = "ERROR " + data.status + ": " + data.responseText;
+  })
+    .done(function (data) {
+      res_txt.innerHTML = JSON.stringify(data, null, 2).toString();
+    })*/
   }
   function copy_clk() {
     if (navigator.clipboard)
-      navigator.clipboard.writeText("https://api-thirukkural.vercel.app/kural?num=1").then(alert("URL Copied to Clipboard"));
+      navigator.clipboard.writeText("https://api-thirukkural.vercel.app/api?num=1").then(alert("URL Copied to Clipboard"));
     else {
       var copyText = document.getElementById("copy");
       copyText.select();
